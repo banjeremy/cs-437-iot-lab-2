@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <meta
+      http-equiv="X-Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Lab 2</title>
+  </head>
+  <body>
+    <div class="titlebar"></div>
+    <video class="background-video" autoplay loop>
+      <source src="video.mp4" type="video/mp4" />
+    </video>
+    <div class="stats hud">
+      <table>
+        <tbody>
+          <tr>
+            <th class="label">direction</th>
+            <td class="value">forward</td>
+          </tr>
+          <tr>
+            <th class="label">speed</th>
+            <td class="value">85</td>
+          </tr>
+          <tr>
+            <th class="label">distance traveled</th>
+            <td class="value">44.2m</td>
+          </tr>
+          <tr>
+            <th class="label">temperature</th>
+            <td class="value">102ºF</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="controls hud">
+      <div class="control-arrow-grid">
+        <img class="control-arrow control-arrow-up active" src="images/up_arrow.svg" />
+        <img
+          class="control-arrow control-arrow-right"
+          src="images/right_arrow.svg"
+        />
+        <img
+          class="control-arrow control-arrow-down"
+          src="images/down_arrow.svg"
+        />
+        <img
+          class="control-arrow control-arrow-left"
+          src="images/left_arrow.svg"
+        />
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,113 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+}
+
+:root {
+  --background-color: #ffffff;
+  --foreground-color: #222222;
+  --hud-background: #22222230;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #0e1116;
+    --foreground-color: #c9d1d9;
+    --hud-background: #ffffff30;
+  }
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--foreground-color);
+  padding: 8px;
+  overflow: hidden;
+}
+
+/* draggable title bar on macos */
+.titlebar {
+  height: 25px;
+  top: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  -webkit-app-region: drag;
+  cursor: default;
+}
+
+.background-video {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  object-fit: cover;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.6;
+}
+
+.hud {
+  display: inline-block;
+  background-color: var(--hud-background);
+  backdrop-filter: blur(10px);
+  border-radius: 4px;
+  padding: 15px;
+}
+
+.controls {
+  grid-row: 3;
+  grid-column: 1;
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+}
+
+.control-arrow-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 40px);
+  grid-template-rows: repeat(3, 40px);
+}
+
+.control-arrow {
+  width: 40px;
+  height: 40px;
+}
+
+.control-arrow-up {
+  grid-row: 1;
+  grid-column: 2;
+}
+.control-arrow-right {
+  grid-row: 2;
+  grid-column: 3;
+}
+.control-arrow-down {
+  grid-row: 3;
+  grid-column: 2;
+}
+.control-arrow-left {
+  grid-row: 2;
+  grid-column: 1;
+}
+
+.control-arrow.active,
+.control-arrow:hover {
+  filter: invert(64%) sepia(36%) saturate(789%) hue-rotate(53deg)
+    brightness(94%) contrast(92%);
+}
+
+.stats {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-size: 14px;
+}
+
+.stats .label {
+  text-align: left;
+}
+
+.stats .value {
+  text-align: right;
+}
