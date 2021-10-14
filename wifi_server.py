@@ -12,10 +12,10 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.connect((HOST, PORT))
     while True:
 
-        # send actual stats
+        # TODO: send actual stats. and maybe sleep for a few hundred ms 
         s.send(
             '{"type": "stat", "name": "temperature", "value": 8765}'.encode()
-        )  # send the encoded message (send in binary format)
+        )
 
         try:
             data = s.recv(1024)
