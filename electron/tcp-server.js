@@ -6,17 +6,20 @@ module.exports.start = function (win) {
     socket.on("data", (data) => {
       try {
         const message = JSON.parse(data.toString());
-        switch (message.type) {
-          case "stat":
-            win.webContents.send("stat", message);
-            break;
-          default:
-            console.log(
-              `don't know how to handle message of type '${message.type}''`
-            );
+
+        for (const stat of message) {
+          switch (stat.type) {
+            case "stat":
+              win.webContents.send("stat", stat);
+              break;
+            default:
+              console.log(
+                `don't know how to handle stat of type '${stat.type}''`
+              );
+          }
         }
       } catch (error) {
-        console.log("got a bad message");
+        console.log("got a bad message", data.toString());
       }
     });
 
