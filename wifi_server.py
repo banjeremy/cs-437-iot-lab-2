@@ -1,22 +1,28 @@
 import json
 import socket
+from threading import Thread
+from time import sleep
 
 from controls import Controls
 
 ctl = Controls()
 
-HOST = "192.168.0.100"  # IP address of your pc
+HOST = "192.168.0.117"  # IP address of your pc
 PORT = 1337  # The port used by the server
+
+
+def send_stats(socket):
+    while True:
+        socket.send(json.dumps(ctl.get_stats()).encode())
+        sleep(1)
+
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.connect((HOST, PORT))
+    thread = Thread(target=send_stats, args=(s,))
+    thread.start()
+
     while True:
-
-        # TODO: send actual stats. and maybe sleep for a few hundred ms 
-        s.send(
-            '{"type": "stat", "name": "temperature", "value": 8765}'.encode()
-        )
-
         try:
             data = s.recv(1024)
             message = json.loads(data.decode())

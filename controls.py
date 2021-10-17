@@ -29,12 +29,32 @@ class Controls:
         fc.turn_right(self.power)
 
     def stop(self):
+        self.current_direction = "STOP"
         self.is_stopped = True
         fc.stop()
 
     def get_stats(self):
-        return {
-            "temperature": fc.cpu_temperature(),
-            "speed": 0 if self.is_stopped else self.power,
-            "direction": self.current_direction,
-        }
+        self.distance_traveled += 0 if self.is_stopped else self.power
+
+        return [
+            {
+                "type": "stat",
+                "name": "temperature",
+                "value": fc.cpu_temperature(),
+            },
+            {
+                "type": "stat",
+                "name": "speed",
+                "value": 0 if self.is_stopped else self.power,
+            },
+            {
+                "type": "stat",
+                "name": "direction",
+                "value": self.current_direction,
+            },
+            {
+                "type": "stat",
+                "name": "distance",
+                "value": self.distance_traveled,
+            },
+        ]
